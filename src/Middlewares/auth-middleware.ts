@@ -1,6 +1,7 @@
 import { Response,NextFunction } from "express";
 import { JWTHelper } from "../Helpers/jwt";
 import UserModel from "../Models/user.model"
+import { IUser } from "../types/IUser";
 
 export const authenticateToken = async (
   req: any,
@@ -9,7 +10,6 @@ export const authenticateToken = async (
 ): Promise<void> => {
   try {
     const authHeader = req.headers.authorization;
-    console.log("entró acá", authHeader)
     const token = authHeader && authHeader.split(' ')[1]; // Bearer TOKEN
     
     if (!token) {
@@ -26,12 +26,12 @@ export const authenticateToken = async (
     if (!user) {
       res.status(401).json({
         success: false,
-        message: 'Usuario no encontrado o inactivo'
+        message: 'Usuario no encontrado'
       });
       return;
     }
 
-    req.user = user;
+    req.user = user as IUser
     next();
   } catch (error) {
     res.status(403).json({

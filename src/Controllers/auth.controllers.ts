@@ -1,6 +1,6 @@
 import { AuthService } from "../Services/auth.services";
 import {Request, Response} from "express"
-
+import { IAuthRequest } from "../types/IAuthRequest";
 const authService = new AuthService();
 
 export class AuthController {
@@ -45,13 +45,11 @@ export class AuthController {
     }
   }
 
-   public async getProfile(req: any, res: Response): Promise<void> {
+   public async getProfile(req: IAuthRequest, res: Response): Promise<void> {
     try {
-      const userId = req.user._id!;
+      const userId = req.user?._id;
       const user = await authService.getProfile(userId);
 
-
-      console.log("acá", user)
       res.json({
         success: true,
         data: user

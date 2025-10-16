@@ -7,8 +7,9 @@ const forumController = new ForumController();
 
 
 
-// Rutas públicas
+// Rutas de comentarios
 router.post('/add', forumController.addComment);
 router.get("/filter", forumController.filter)
 router.get("/",forumController.getAll)
+
 export default router;

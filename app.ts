@@ -3,6 +3,7 @@ import morgan from "morgan"
 import database from "./src/Config/database"
 import authRoutes from "./src/Routes/auth.routes"
 import forumRoutes from "./src/Routes/forum.routes"
+import messageRoutes from "./src/Routes/message.routes"
 import cors from "cors"
 
 
@@ -23,6 +24,7 @@ app.get("/",(req,res)=>{
 database.conectar()
 app.use(authRoutes)
 app.use("/comments/",forumRoutes)
+app.use("/messages/",messageRoutes)
 app.listen(PORT,()=>{
     console.log("El servidor está corriendo en el puerto: ", PORT)
 })
