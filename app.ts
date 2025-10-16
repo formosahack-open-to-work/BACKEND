@@ -2,6 +2,7 @@ import express from "express"
 import morgan from "morgan"
 import database from "./src/Config/database"
 import authRoutes from "./src/Routes/auth.routes"
+import cors from "cors"
 
 
 const app = express()
@@ -9,6 +10,11 @@ const PORT = 4000
 
 app.use(morgan("dev"))
 app.use(express.json())
+app.use(cors({
+    methods: ["POST","GET","PATCH"],
+    credentials:true, 
+    origin: ["http://localhost:5173"]
+}))
 app.get("/",(req,res)=>{
     res.send("Servidor funcionando")
 })

@@ -44,4 +44,23 @@ export class AuthController {
       });
     }
   }
+
+   public async getProfile(req: any, res: Response): Promise<void> {
+    try {
+      const userId = req.user._id!;
+      const user = await authService.getProfile(userId);
+
+
+      console.log("acá", user)
+      res.json({
+        success: true,
+        data: user
+      });
+    } catch (error: any) {
+      res.status(404).json({
+        success: false,
+        message: error.message
+      });
+    }
+  }
 }
