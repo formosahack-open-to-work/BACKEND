@@ -4,6 +4,7 @@ import database from "./src/Config/database"
 import authRoutes from "./src/Routes/auth.routes"
 import forumRoutes from "./src/Routes/forum.routes"
 import messageRoutes from "./src/Routes/message.routes"
+import chatbotRoutes from "./src/Routes/chatbot.routes"
 import cors from "cors"
 
 
@@ -25,6 +26,7 @@ database.conectar()
 app.use(authRoutes)
 app.use("/comments/",forumRoutes)
 app.use("/messages/",messageRoutes)
+app.use("/chatbot/",chatbotRoutes)
 app.listen(PORT,()=>{
     console.log("El servidor está corriendo en el puerto: ", PORT)
 })
