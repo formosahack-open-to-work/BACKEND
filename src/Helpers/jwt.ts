@@ -9,12 +9,14 @@ export class JWTHelper {
     email: string;
     role: 'admin' | 'user';
     name: string;
+    condition: string
   } {
     return {
       id: user._id,
       email: user.email,
       role: user.role,
-      name: user.name
+      name: user.name,
+      condition: user.condition
     };
   }
 
