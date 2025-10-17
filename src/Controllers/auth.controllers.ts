@@ -4,9 +4,6 @@ import { IAuthRequest } from "../types/IAuthRequest";
 const authService = new AuthService();
 
 export class AuthController {
-  
-  // Registra un nuevo usuario
-   
   public async register(req: Request, res: Response): Promise<void> {
     try {
       const userData = req.body;
@@ -25,8 +22,7 @@ export class AuthController {
     }
   }
 
-  // Inicia sesión de usuario
-   
+
   public async login(req: Request, res: Response): Promise<void> {
     try {
       const credentials = req.body;
@@ -49,7 +45,6 @@ export class AuthController {
     try {
       const userId = req.user?._id;
       const user = await authService.getProfile(userId);
-
       res.json({
         success: true,
         data: user

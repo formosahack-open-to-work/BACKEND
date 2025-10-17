@@ -15,7 +15,6 @@ export class MessageServices {
     return result
   }
 
-
   public async getMessages(user: IUser){
     const comments = await messageSchema.find({ $or: [ { from: user._id }, { to: user._id } ] })
     return comments

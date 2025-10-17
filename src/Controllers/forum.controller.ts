@@ -1,16 +1,16 @@
 import { ForumServices } from "../Services/forum.services";
 import { Response, Request } from "express";
+import { IAuthRequest } from "../types/IAuthRequest";
 const forumServices = new ForumServices();
 
 export class ForumController {
-  public async addComment(req: Request, res: Response): Promise<void> {
+  public async addComment(req: IAuthRequest, res: Response): Promise<void> {
     try {
-      // const userData = req.user
-      // console.log("acá",userData)
+      if (!req.user) throw new Error("No se encontró el usuario")
       const comment = req.body;
       const result = await forumServices.addComment({
         ...comment,
-        owner: "68f13923d81dec6b66297f47",
+        owner: req.user._id,
       });
 
       res.status(201).json({

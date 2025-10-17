@@ -18,7 +18,7 @@ export class ForumServices {
     return comments
   }
   public async getComments() {
-    const comments = await commentSchema.find()
+    const comments = await commentSchema.find().populate("owner")
     return comments
   }
 }
